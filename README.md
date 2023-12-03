@@ -7,7 +7,7 @@ I find qbittorrent's search engine UI to be a bit cringe, so my smart ass decide
 
 ## Requirements
 
-+ Librewolf (If you prefer another browser, edit the shell script to your linking)
++ Librewolf (If you prefer another browser, edit the shell script to your liking)
 + Rofi
 + Common Sense
 + Hatred for subscription-based services
