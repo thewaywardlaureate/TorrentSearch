@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+check_dependencies() {
+    if ! command -v rofi &>/dev/null; then
+        echo "The 'rofi' package is not installed. Please install it before running this script."
+        exit 1
+    fi
+    if ! command -v librewolf &>/dev/null; then
+        echo "The 'librewolf' package is not installed. Please install it before running this script."
+        exit 1
+    fi
+}
+
+check_dependencies
+
+clear
+options="Magnet DL\nTorrent CSV\nCustomised Search Engine 1\nCustomised Search Engine 2\n1337x"
+
+selected_option=$(echo -e "$options" | rofi -dmenu -p "Select an option" -lines 3 -width 20)
+
+input=$(rofi -dmenu -p "Input torrent request")
+
+# Chief dinkan has bestowed upon me the knowledge of case-esac and I am forever grateful for it. You are a good bastard
+
+case "$selected_option" in
+    "Magnet DL")
+        librewolf "https://www.magnetdl.com/o/$input/"
+        ;;
+    "Torrent CSV")
+        librewolf "https://torrents-csv.ml/search?q=$input"
+        ;;
+    "1337x")
+        librewolf "https://1337x.to/search/$input/1/"
+        ;;
+    "Customised Search Engine 1")
+        librewolf "https://cse.google.com/cse?cx=006516753008110874046:0led5tukccj#gsc.tab=0&gsc.q=$input"
+        ;;
+    *)
+        echo "Invalid option selected."
+        ;;
+esac
